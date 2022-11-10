@@ -2,23 +2,34 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import CartWidget from "./CartWidget";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">La Verduleria</Navbar.Brand>
+        <Link to={"/"}>
+          <Navbar.Brand href="#home">La Verduleria</Navbar.Brand>
+        </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="justify-content-center" style={{ width: "100%" }}>
-            <Nav.Link href="#frutas">Frutas</Nav.Link>
-            <Nav.Link href="#verduras">Verduras</Nav.Link>
-            <Nav.Link href="#congelados">Congelados</Nav.Link>
+            <Link to={"/category/frutas"}>
+              <Nav.Link href="#frutas">Frutas</Nav.Link>
+            </Link>
+            <Link to={"/category/verduras"}>
+              <Nav.Link href="#verduras">Verduras</Nav.Link>
+            </Link>
+            <Link to={"/category/congelados"}>
+              <Nav.Link href="#congelados">Congelados</Nav.Link>
+            </Link>
           </Nav>
           <Nav>
-            <Nav.Link href="#cartwidget">
-              <CartWidget />
-            </Nav.Link>
+            <Link to={"/cart"}>
+              <Nav.Link href="#cartwidget">
+                <CartWidget />
+              </Nav.Link>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
