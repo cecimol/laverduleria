@@ -3,8 +3,11 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
+import { CartContext } from "../context/cartContext";
+import { useContext } from "react";
 
 const NavBar = () => {
+  const { isCartEmpty } = useContext(CartContext);
   return (
     <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
       <Container>
@@ -24,13 +27,15 @@ const NavBar = () => {
               <Nav.Link href="#congelados">Congelados</Nav.Link>
             </Link>
           </Nav>
-          <Nav>
-            <Link to={"/cart"}>
-              <Nav.Link href="#cartwidget">
-                <CartWidget />
-              </Nav.Link>
-            </Link>
-          </Nav>
+          {!isCartEmpty() && (
+            <Nav>
+              <Link to={"/cart"}>
+                <Nav.Link href="#cartwidget">
+                  <CartWidget />
+                </Nav.Link>
+              </Link>
+            </Nav>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
